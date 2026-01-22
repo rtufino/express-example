@@ -28,7 +28,7 @@
 └── views/             # Plantillas de la interfaz (EJS)
     ├── index.ejs      # Vista principal de productos (catálogo)
     └── detalles.ejs   # Vista de detalles individuales del producto
-
+```
 ## 🛣️ Rutas Disponibles
 
 * **`GET /`** - Página principal con todos los productos
