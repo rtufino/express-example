@@ -17,34 +17,44 @@ app.use(express.static('public'));
 // Simular una lista de productos
 const listaProductos = [
     {
+    id: 1,
     nombre: "Laptop Pro",
-    precio: 850,
+    precio: 0,
     categoria: "computadores",
-    imagen: "https://dummyimage.com/200x200/000/fff&text=Laptop"
+    imagen: "https://dummyimage.com/200x200/000/fff&text=Product",
+    detalles: ""
 },
 {
+    id: 2,
     nombre: "PC Desktop Gamer",
-    precio: 1200,
+    precio: 0,
     categoria: "computadores",
-    imagen: "https://dummyimage.com/200x200/000/fff&text=PC+Gamer"
+    imagen: "https://dummyimage.com/200x200/000/fff&text=Product",
+    detalles: ""
 },
 {
+    id: 3,
     nombre: "Audifonos Sony",
-    precio: 125,
+    precio: 0,
     categoria: "perifericos",
-    imagen: "https://dummyimage.com/200x200/000/fff&text=Audifonos"
+    imagen: "https://dummyimage.com/200x200/000/fff&text=Product",
+    detalles: ""
 },
 {
+    id: 4,
     nombre: "Mouse ergonómico",
-    precio: 50,
+    precio: 0,
     categoria: "perifericos",
-    imagen: "https://dummyimage.com/200x200/000/fff&text=Mouse"
+    imagen: "https://dummyimage.com/200x200/000/fff&text=Product",
+    detalles: ""
 },
 {
+    id: 5,
     nombre: "Teclado Mecánico",
-    precio: 80,
+    precio: 0,
     categoria: "perifericos",
-    imagen: "https://dummyimage.com/200x200/000/fff&text=Teclado"
+    imagen: "https://dummyimage.com/200x200/000/fff&text=Product",
+    detalles: ""
 }
 ];
 
@@ -69,6 +79,22 @@ app.get('/categoria/:nombreCategoria', (req, res) => {
     res.render('index', { 
         productos: productosFiltrados, 
         titulo: cat.charAt(0).toUpperCase() + cat.slice(1) // Para poner la primera letra en mayúscula
+    });
+});
+
+// Ruta para mostrar detalles de un producto específico
+app.get('/producto/:id', (req, res) => {
+    const productId = parseInt(req.params.id);
+    
+    // Buscar el producto por ID
+    const producto = listaProductos.find(p => p.id === productId);
+    
+    if (!producto) {
+        return res.status(404).send('Producto no encontrado');
+    }
+    
+    res.render('detalles', {
+        producto: producto
     });
 });
 
